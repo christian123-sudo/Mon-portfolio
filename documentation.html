@@ -7,88 +7,146 @@
     <link rel="stylesheet" href="Style.css">
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&display=swap" rel="stylesheet">
     <style>
-        /* --- STYLES DU CARROUSEL ET CODE COULEUR --- */
-        .carousel-container {
+        /* --- STYLES DU CARROUSEL INTERACTIF ET CENTRÉ --- */
+        .carousel-wrapper {
             position: relative;
-            max-width: 1000px;
+            max-width: 1050px;
             margin: 40px auto;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .carousel-container {
+            width: 100%;
             overflow: hidden;
+            padding: 20px 0;
         }
 
         .carousel-track {
             display: flex;
-            gap: 20px;
+            gap: 25px;
             overflow-x: auto;
             scroll-behavior: smooth;
-            padding: 20px 10px;
-            scrollbar-width: thin;
+            padding: 10px;
+            scrollbar-width: none; /* Cache la barre de défilement sur Firefox */
+            justify-content: flex-start;
         }
 
-        /* Personnalisation de la barre de défilement */
+        /* Cache la barre de défilement sur Chrome/Safari */
         .carousel-track::-webkit-scrollbar {
-            height: 8px;
-        }
-        .carousel-track::-webkit-scrollbar-thumb {
-            background-color: #ccc;
-            border-radius: 4px;
+            display: none;
         }
 
         /* Cartes du carrousel */
         .doc-card-carousel {
-            flex: 0 0 300px; /* Largeur fixe pour chaque carte */
+            flex: 0 0 290px; /* Largeur fixe pour chaque carte */
             background: #fff;
-            border-radius: 8px;
-            padding: 20px;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            border-radius: 12px;
+            padding: 24px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.08);
             display: flex;
             flex-direction: column;
             justify-content: space-between;
-            border-top: 6px solid #ccc; /* Bordure par défaut */
-            transition: transform 0.3s ease;
+            border-top: 6px solid #ccc;
+            transition: transform 0.3s cubic-bezier(0.25, 0.8, 0.25, 1), box-shadow 0.3s ease;
         }
 
+        /* Effet interactif au survol */
         .doc-card-carousel:hover {
-            transform: translateY(-5px);
+            transform: translateY(-8px) scale(1.02);
+            box-shadow: 0 12px 24px rgba(0,0,0,0.15);
         }
 
         /* Distinction de couleur : Rouge (Alternance - MOOP) */
         .card-alternance {
-            border-top-color: #e63946; /* Rouge */
+            border-top-color: #e63946;
         }
         .card-alternance .badge {
             background-color: #e63946;
             color: white;
-            padding: 4px 8px;
-            border-radius: 4px;
-            font-size: 0.8rem;
-            font-weight: bold;
+            padding: 5px 10px;
+            border-radius: 20px;
+            font-size: 0.75rem;
+            font-weight: 700;
+            text-transform: uppercase;
             display: inline-block;
-            margin-bottom: 10px;
+            margin-bottom: 12px;
+            letter-spacing: 0.5px;
         }
 
         /* Distinction de couleur : Bleu (École - Mise en place) */
         .card-ecole {
-            border-top-color: #457b9d; /* Bleu */
+            border-top-color: #457b9d;
         }
         .card-ecole .badge {
             background-color: #457b9d;
             color: white;
-            padding: 4px 8px;
-            border-radius: 4px;
-            font-size: 0.8rem;
-            font-weight: bold;
+            padding: 5px 10px;
+            border-radius: 20px;
+            font-size: 0.75rem;
+            font-weight: 700;
+            text-transform: uppercase;
             display: inline-block;
-            margin-bottom: 10px;
+            margin-bottom: 12px;
+            letter-spacing: 0.5px;
         }
 
         .doc-card-carousel h4 {
             margin: 10px 0;
-            font-size: 1.1rem;
+            font-size: 1.15rem;
+            color: #1d3557;
+            font-weight: 700;
+        }
+
+        .doc-card-carousel .description {
+            font-size: 0.9rem;
+            color: #4a5568;
+            line-height: 1.4;
+            margin-bottom: 10px;
         }
 
         .doc-card-carousel .tags {
-            font-size: 0.9rem;
-            margin: 15px 0;
+            font-size: 0.85rem;
+            color: #718096;
+            margin: 10px 0 20px 0;
+        }
+
+        /* Boutons de navigation du carrousel */
+        .carousel-btn {
+            background: #fff;
+            border: 1px solid #e2e8f0;
+            color: #333;
+            font-size: 1.5rem;
+            font-weight: bold;
+            width: 45px;
+            height: 45px;
+            border-radius: 50%;
+            cursor: pointer;
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+            zIndex: 10;
+            transition: background 0.2s, color 0.2s;
+        }
+
+        .carousel-btn:hover {
+            background: #1d3557;
+            color: #fff;
+            border-color: #1d3557;
+        }
+
+        .carousel-btn.prev { left: -20px; }
+        .carousel-btn.next { right: -20px; }
+
+        /* Responsiveness pour masquer les flèches sur petit écran si défilement tactile */
+        @media (max-width: 768px) {
+            .carousel-btn { display: none; }
+            .carousel-track { justify-content: flex-start; }
         }
     </style>
 </head>
@@ -112,52 +170,68 @@
             <a href="MIEZAN-Christian-cv (6).pdf" target="_blank" class="cta-button secondary-cta">Consulte mon CV !</a>
         </article>
 
-        
+        <h3 style="text-align: center; margin-top: 50px; font-family: 'Montserrat', sans-serif; color: #1d3557;">Mes Documentations Techniques</h3>
 
-        <div class="carousel-container">
-            <div class="carousel-track">
+        <div class="carousel-wrapper">
+            <button class="carousel-btn prev" onclick="scrollCarousel(-1)">&#10094;</button>
+            
+            <div class="carousel-container">
+                <div class="carousel-track" id="carouselTrack">
 
-                <div class="doc-card-carousel card-alternance">
-                    <div>
-                        <span class="badge">Alternance</span>
-                        <h4>MOOP - Supervision Infrastructure</h4>
-                        <p class="description">Documentation sur la mise en place du projet de supervision en entreprise.</p>
-                        <p class="tags"><strong>Compétences :</strong> Monitoring, Réseau, Scripting.</p>
+                    <div class="doc-card-carousel card-ecole">
+                        <div>
+                            <span class="badge">École</span>
+                            <h4>Mise en place de GLPI</h4>
+                            <p class="description">Installation d'un serveur de gestion de parc informatique et gestion des tickets d'incident sur Debian.</p>
+                            <p class="tags"><strong>Compétences :</strong> GLPI, Debian, SSH, MariaDB.</p>
+                        </div>
+                        <a href="Mise en place de GLPI.pdf" target="_blank" class="cta-button secondary-cta">Consulter</a>
                     </div>
-                    <a href="#" class="cta-button secondary-cta">Consulter</a>
-                </div>
 
-                <div class="doc-card-carousel card-ecole">
-                    <div>
-                        <span class="badge">École</span>
-                        <h4>Mise en place d'un serveur GLPI</h4>
-                        <p class="description">Gestion de parc et déploiement de tickets d'incident à l'IPSSI.</p>
-                        <p class="tags"><strong>Compétences :</strong> Gestion de Parc, Linux, ITIL.</p>
+                    <div class="doc-card-carousel card-ecole">
+                        <div>
+                            <span class="badge">École</span>
+                            <h4>Mise en place Zabbix</h4>
+                            <p class="description">Supervision réseau et systèmes pour Windows et Linux. Déploiement des agents et analyse des pannes.</p>
+                            <p class="tags"><strong>Compétences :</strong> Zabbix, Supervision, Linux, Windows.</p>
+                        </div>
+                        <a href="Mise en place Zabbix.pdf" target="_blank" class="cta-button secondary-cta">Consulter</a>
                     </div>
-                    <a href="#" class="cta-button secondary-cta">Consulter</a>
-                </div>
 
-                <div class="doc-card-carousel card-alternance">
-                    <div>
-                        <span class="badge">Alternance</span>
-                        <h4>MOOP - Déploiement Intune</h4>
-                        <p class="description">Automatisation et gestion des endpoints de l'entreprise via Azure M365.</p>
-                        <p class="tags"><strong>Compétences :</strong> Intune, Cloud, Sécurité.</p>
+                    <div class="doc-card-carousel card-alternance">
+                        <div>
+                            <span class="badge">Alternance</span>
+                            <h4>MOOP IPHONE</h4>
+                            <p class="description">Procédure complète d'installation et de déploiement des iPhones d'entreprise (Apple Business / Microsoft Intune).</p>
+                            <p class="tags"><strong>Compétences :</strong> MDM, Intune, Apple Business, Sécurité.</p>
+                        </div>
+                        <a href="MOOP IPHONE.pdf" target="_blank" class="cta-button secondary-cta">Consulter</a>
                     </div>
-                    <a href="#" class="cta-button secondary-cta">Consulter</a>
-                </div>
 
-                <div class="doc-card-carousel card-ecole">
-                    <div>
-                        <span class="badge">École</span>
-                        <h4>Mise en place d'un VPN PfSense</h4>
-                        <p class="description">Configuration d'un pare-feu et routage inter-VLAN dans l'environnement de TP.</p>
-                        <p class="tags"><strong>Compétences :</strong> PfSense, Sécurité, Routage.</p>
+                    <div class="doc-card-carousel card-alternance">
+                        <div>
+                            <span class="badge">Alternance</span>
+                            <h4>MOOP Réinitialisation iPhone</h4>
+                            <p class="description">Guide de réinitialisation d'usine, gestion des sauvegardes iCloud et retrait sécurisé de la carte SIM.</p>
+                            <p class="tags"><strong>Compétences :</strong> Support Utilisateur, iOS, Sauvegarde.</p>
+                        </div>
+                        <a href="MOOP réinitialisation iphone.pdf" target="_blank" class="cta-button secondary-cta">Consulter</a>
                     </div>
-                    <a href="#" class="cta-button secondary-cta">Consulter</a>
-                </div>
 
+                    <div class="doc-card-carousel card-alternance">
+                        <div>
+                            <span class="badge">Alternance</span>
+                            <h4>MOOP MASTER</h4>
+                            <p class="description">Procédure technique de remasterisation et réinstallation à distance des postes Windows 10 via boot réseau PXE.</p>
+                            <p class="tags"><strong>Compétences :</strong> PXE, Windows 10, SCCM, Déploiement.</p>
+                        </div>
+                        <a href="MOOP MASTER.pdf" target="_blank" class="cta-button secondary-cta">Consulter</a>
+                    </div>
+
+                </div>
             </div>
+
+            <button class="carousel-btn next" onclick="scrollCarousel(1)">&#10095;</button>
         </div>
 
     </section> 
@@ -188,5 +262,16 @@
     <footer>
         <p>© 2025 - Miezan Christian - Portfolio Technique</p>
     </footer>
+
+    <script>
+        function scrollCarousel(direction) {
+            const track = document.getElementById('carouselTrack');
+            const scrollAmount = 315; // Largeur de la carte (290px) + le gap (25px)
+            track.scrollBy({
+                left: direction * scrollAmount,
+                behavior: 'smooth'
+            });
+        }
+    </script>
 </body>
 </html>
