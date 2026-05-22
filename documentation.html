@@ -238,4 +238,113 @@
                     <div class="doc-icon">📊</div>
                     <h3>Tableau de Synthèse</h3>
                     <p>Référentiel des compétences et activités réalisées au cours du BTS SIO SISR.</p>
-                    <a href="Tableau_de_synthese_%20Christian%20finale.pdf" class="btn-doc" target="_blank
+                    <a href="Tableau_de_synthese_%20Christian%20finale.pdf" class="btn-doc" target="_blank">Voir le document</a>
+                </div>
+
+                <div class="doc-card-carousel">
+                    <div class="doc-icon">📄</div>
+                    <h3>Mon Curriculum Vitae</h3>
+                    <p>Découvrez mon parcours professionnel, mes compétences techniques et mes formations.</p>
+                    <a href="CV_MIEZAN_Christian.pdf" class="btn-doc" target="_blank">Voir le document</a>
+                </div>
+
+                <div class="doc-card-carousel">
+                    <div class="doc-icon">🛠️</div>
+                    <h3>Documentation GLPI</h3>
+                    <p>Installation, configuration et gestion d'un serveur de gestion de parc informatique (GLPI).</p>
+                    <a href="Doc_GLPI.html" class="btn-doc" target="_blank">Voir la Doc</a>
+                </div>
+
+                <div class="doc-card-carousel">
+                    <div class="doc-icon">🛡️</div>
+                    <h3>Documentation Zabbix</h3>
+                    <p>Mise en place d'une solution de supervision réseau et système pour le suivi des infrastructures.</p>
+                    <a href="Doc_Zabbix.html" class="btn-doc" target="_blank">Voir la Doc</a>
+                </div>
+
+            </div>
+            <button class="carousel-btn next-btn" id="nextBtn">&#10095;</button>
+        </div>
+
+        <h2>Mes Projets Réalisés</h2>
+        <div class="projects-grid">
+            
+            <div class="project-card">
+                <div>
+                    <h3>Mise en Situation Professionnelle - Cas Martin</h3>
+                    <p>Analyse, déploiement et sécurisation complète d'une infrastructure réseau et système fictive dans le cadre de mes examens.</p>
+                    <div class="project-tags">
+                        <span class="tag">Réseau</span>
+                        <span class="tag">Sécurité</span>
+                        <span class="tag">SISR</span>
+                    </div>
+                </div>
+                <a href="Projet_Cas_Martin.html" class="btn-doc" target="_blank">Détails du Projet</a>
+            </div>
+
+            <div class="project-card">
+                <div>
+                    <h3>Supervision Réseau d'Entreprise</h3>
+                    <p>Mise en place d'alertes automatiques et de tableaux de bord pour surveiller la disponibilité des serveurs critiques.</p>
+                    <div class="project-tags">
+                        <span class="tag">Zabbix</span>
+                        <span class="tag">Linux</span>
+                        <span class="tag">Metrologie</span>
+                    </div>
+                </div>
+                <a href="Projet_Supervision.html" class="btn-doc" target="_blank">Détails du Projet</a>
+            </div>
+
+            <div class="project-card">
+                <div>
+                    <h3>Gestion de Parc & Helpdesk</h3>
+                    <p>Déploiement de GLPI pour automatiser l'inventaire matériel et optimiser la résolution des incidents via un système de tickets.</p>
+                    <div class="project-tags">
+                        <span class="tag">GLPI</span>
+                        <span class="tag">ITIL</span>
+                        <span class="tag">Support</span>
+                    </div>
+                </div>
+                <a href="Projet_GLPI_Tickets.html" class="btn-doc" target="_blank">Détails du Projet</a>
+            </div>
+
+        </div>
+
+        <a href="index.html" class="btn-back">← Retour à l'Accueil</a>
+    </main>
+
+    <footer>
+        <p>&copy; 2026 - MIEZAN Christian | Portfolio BTS SIO SISR</p>
+    </footer>
+
+    <script>
+        const track = document.getElementById('carouselTrack');
+        const nextBtn = document.getElementById('nextBtn');
+        const prevBtn = document.getElementById('prevBtn');
+
+        let index = 0;
+        const cardWidth = 280; // Largeur de la carte (260px) + gap (20px)
+        const maxIndex = track.children.length - 3; // Ajuste selon le nombre de cartes visibles (ici 3 visibles)
+
+        nextBtn.addEventListener('click', () => {
+            if (index < maxIndex) {
+                index++;
+                track.style.transform = `translateX(-${index * cardWidth}px)`;
+            } else {
+                index = 0; // Boucle retour au début
+                track.style.transform = `translateX(0px)`;
+            }
+        });
+
+        prevBtn.addEventListener('click', () => {
+            if (index > 0) {
+                index--;
+                track.style.transform = `translateX(-${index * cardWidth}px)`;
+            } else {
+                index = maxIndex; // Boucle vers la fin
+                track.style.transform = `translateX(-${index * cardWidth}px)`;
+            }
+        });
+    </script>
+</body>
+</html>
