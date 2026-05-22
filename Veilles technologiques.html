@@ -8,6 +8,36 @@
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&display=swap" rel="stylesheet">
     <style>
         /* ==========================================================================
+           AJUSTEMENTS DE MISE EN PAGE (CENTRAGE SANS TOUCHER AUX STYLES EXISTANTS)
+           ========================================================================== */
+        
+        /* Force la section principale à occuper l'espace central de manière harmonieuse */
+        .veille-grid-section {
+            max-width: 800px;
+            margin: 60px auto !important; /* Centre le bloc complet horizontalement */
+            padding: 0 20px;
+            text-align: center; /* Centre le titre et l'introduction */
+            display: flex;
+            flex-direction: column;
+            align-items: center; /* Aligne la carte au milieu */
+        }
+
+        /* Ajustement de l'intro pour une lecture plus agréable sur une seule colonne */
+        .section-intro {
+            max-width: 600px;
+            margin: 0 auto 40px auto !important;
+            line-height: 1.6;
+        }
+
+        /* Force la carte à se centrer et à ne pas s'étirer anormalement */
+        .veille-card {
+            max-width: 550px;
+            width: 100%;
+            text-align: left; /* Garde le texte à l'intérieur de la carte aligné à gauche pour rester propre */
+            margin: 0 auto !important;
+        }
+
+        /* ==========================================================================
            STYLES POUR LA FENÊTRE MODALE (L'ARTICLE DE VEILLE)
            ========================================================================== */
         .modal {
@@ -19,8 +49,8 @@
             width: 100%;
             height: 100%;
             overflow: auto;
-            background-color: rgba(0, 0, 0, 0.6); /* Fond semi-transparent */
-            backdrop-filter: blur(5px); /* Effet flou en arrière-plan */
+            background-color: rgba(0, 0, 0, 0.6); 
+            backdrop-filter: blur(5px); 
         }
 
         .modal-content {
@@ -113,14 +143,13 @@
             <h4>Comment l'IA influence les constructeurs automobiles</h4>
             <p class="description">Analyse de la révolution logicielle au cœur du véhicule : optimisation des coûts, modèles open source, souveraineté numérique et compétitivité mondiale avec un focus sur le marché chinois.</p>
             <p class="tags"> Automobile, IA, Infrastructure, Coûts, Open Source. </p>
-            <button onclick="openArticle()" class="cta-button secondary-cta" style="cursor: pointer; border: none;">Consulter l'article</button>
+            <button onclick="openArticle()" class="cta-button secondary-cta" style="cursor: pointer; border: none; width: 100%;">Consulter l'article</button>
         </article>
     </section>
 
     <div id="articleModal" class="modal">
         <div class="modal-content">
             <span class="close-modal" onclick="closeArticle()">&times;</span>
-            
             <span class="back-link" onclick="closeArticle()">← Retour aux veilles</span>
             
             <h1 style="margin-top: 10px;">L'IA et l'avenir de l'automobile : La révolution logicielle</h1>
@@ -174,15 +203,14 @@
 
         function openArticle() {
             modal.style.display = "block";
-            document.body.style.overflow = "hidden"; /* Empêche le défilement de la page arrière */
+            document.body.style.overflow = "hidden";
         }
 
         function closeArticle() {
             modal.style.display = "none";
-            document.body.style.overflow = "auto"; /* Réactive le défilement */
+            document.body.style.overflow = "auto";
         }
 
-        // Ferme aussi la modale si l'utilisateur clique en dehors de la boîte blanche
         window.onclick = function(event) {
             if (event.target == modal) {
                 closeArticle();
