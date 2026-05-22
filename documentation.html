@@ -3,348 +3,237 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Mes Documentations - Portfolio</title>
+    <title> Documentations Techniques - Miezan Christian </title>
+    <link rel="stylesheet" href="Style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&display=swap" rel="stylesheet">
     <style>
-        /* Variables de couleur */
-        :root {
-            --bg-color: #0d1117;
-            --card-bg: #161b22;
-            --text-color: #c9d1d9;
-            --text-main: #ffffff;
-            --accent-color: #58a6ff;
-            --accent-hover: #1f6feb;
-            --border-color: #30363d;
-        }
-
-        /* Style Global */
-        body {
-            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
-            background-color: var(--bg-color);
-            color: var(--text-color);
-            margin: 0;
-            padding: 0;
-            display: flex;
-            flex-direction: column;
-            min-height: 100vh;
-        }
-
-        header {
-            background-color: var(--card-bg);
-            border-bottom: 1px solid var(--border-color);
-            padding: 20px;
-            text-align: center;
-        }
-
-        header h1 {
-            color: var(--text-main);
-            margin: 0;
-            font-size: 2rem;
-        }
-
-        main {
-            max-width: 1200px;
-            margin: 40px auto;
-            padding: 0 20px;
-            flex: 1;
-            width: 100%;
-            box-sizing: border-box;
-        }
-
-        h2 {
-            color: var(--text-main);
-            border-bottom: 2px solid var(--accent-color);
-            padding-bottom: 10px;
-            margin-bottom: 30px;
-        }
-
-        /* --- CARROUSEL INTERACTIF --- */
-        .carousel-container {
+        /* --- STYLES DU CARROUSEL INTERACTIF ET CENTRÉ --- */
+        .carousel-wrapper {
             position: relative;
-            max-width: 900px;
-            margin: 0 auto 60px auto;
+            max-width: 1050px;
+            margin: 40px auto;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .carousel-container {
+            width: 100%;
             overflow: hidden;
-            padding: 10px 0;
+            padding: 20px 0;
         }
 
         .carousel-track {
             display: flex;
-            gap: 20px;
-            transition: transform 0.5s ease-in-out;
-            width: max-content;
+            gap: 25px;
+            overflow-x: auto;
+            scroll-behavior: smooth;
+            padding: 10px;
+            scrollbar-width: none; /* Cache la barre de défilement sur Firefox */
+            justify-content: flex-start;
         }
 
+        /* Cache la barre de défilement sur Chrome/Safari */
+        .carousel-track::-webkit-scrollbar {
+            display: none;
+        }
+
+        /* Cartes du carrousel */
         .doc-card-carousel {
-            background-color: var(--card-bg);
-            border: 1px solid var(--border-color);
-            border-radius: 8px;
+            flex: 0 0 290px; /* Largeur fixe pour chaque carte */
+            background: #1e1e1e;
+            border: 2px solid #333;
+            border-radius: 12px;
             padding: 25px;
-            width: 260px; /* Taille fixe pour l'alignement */
-            flex-shrink: 0;
+            text-align: center;
+            box-shadow: 0 8px 16px rgba(0,0,0,0.5);
+            transition: transform 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
             display: flex;
             flex-direction: column;
             justify-content: space-between;
-            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
-            text-align: center;
-            transition: transform 0.3s, border-color 0.3s;
+            height: 320px; /* Hauteur fixe pour uniformiser */
         }
 
         .doc-card-carousel:hover {
-            transform: translateY(-5px);
-            border-color: var(--accent-color);
+            transform: translateY(-10px);
+            border-color: #007bff;
+            box-shadow: 0 12px 24px rgba(0, 123, 255, 0.3);
         }
 
         .doc-icon {
-            font-size: 3rem;
+            font-size: 3.5rem;
             margin-bottom: 15px;
         }
 
         .doc-card-carousel h3 {
-            color: var(--text-main);
-            margin: 0 0 10px 0;
-            font-size: 1.3rem;
+            font-size: 1.4rem;
+            color: #fff;
+            margin-bottom: 10px;
+            font-weight: 700;
         }
 
         .doc-card-carousel p {
-            font-size: 0.9rem;
-            line-height: 1.4;
+            font-size: 0.95rem;
+            color: #b3b3b3;
+            line-height: 1.5;
             margin-bottom: 20px;
-            flex-grow: 1;
+            flex-grow: 1; /* Permet de pousser le bouton vers le bas */
         }
 
+        /* Boutons des cartes */
         .btn-doc {
             display: inline-block;
-            background-color: var(--accent-color);
-            color: #ffffff;
+            padding: 10px 20px;
+            background-color: #007bff;
+            color: #fff;
             text-decoration: none;
-            padding: 10px 15px;
-            border-radius: 6px;
-            font-weight: bold;
-            font-size: 0.9rem;
-            transition: background-color 0.2s;
+            border-radius: 25px;
+            font-weight: 600;
+            transition: background 0.3s ease, transform 0.2s ease;
         }
 
         .btn-doc:hover {
-            background-color: var(--accent-hover);
+            background-color: #0056b3;
+            transform: scale(1.05);
         }
 
-        /* Boutons de Navigation du Carrousel */
+        /* Boutons de navigation fléchés */
         .carousel-btn {
             position: absolute;
             top: 50%;
             transform: translateY(-50%);
-            background-color: rgba(22, 27, 34, 0.8);
-            border: 1px solid var(--border-color);
-            color: var(--text-main);
-            font-size: 1.5rem;
-            padding: 12px 16px;
-            cursor: pointer;
+            background: rgba(0, 0, 0, 0.7);
+            border: 2px solid #007bff;
+            color: #007bff;
+            font-size: 2rem;
+            width: 50px;
+            height: 50px;
             border-radius: 50%;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
             z-index: 10;
-            transition: background-color 0.2s, color 0.2s;
+            transition: background 0.3s, color 0.3s, transform 0.2s;
         }
 
         .carousel-btn:hover {
-            background-color: var(--accent-color);
-            color: white;
+            background: #007bff;
+            color: #fff;
+            transform: translateY(-50%) scale(1.1);
         }
 
-        .prev-btn { left: 10px; }
-        .next-btn { right: 10px; }
-
-        /* --- GRILLE DES PROJETS --- */
-        .projects-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 30px;
+        .prev-btn {
+            left: -60px;
         }
 
-        .project-card {
-            background-color: var(--card-bg);
-            border: 1px solid var(--border-color);
-            border-radius: 8px;
-            padding: 20px;
-            display: flex;
-            flex-direction: column;
-            justify-content: space-between;
-            transition: transform 0.3s;
+        .next-btn {
+            right: -60px;
         }
 
-        .project-card:hover {
-            transform: scale(1.02);
-        }
-
-        .project-card h3 {
-            color: var(--text-main);
-            margin-top: 0;
-        }
-
-        .project-tags {
-            margin: 15px 0;
-        }
-
-        .tag {
-            background-color: #21262d;
-            border: 1px solid var(--border-color);
-            color: var(--accent-color);
-            padding: 4px 8px;
-            border-radius: 4px;
-            font-size: 0.8rem;
-            margin-right: 5px;
-            display: inline-block;
-        }
-
-        .btn-back {
-            display: block;
-            width: max-content;
-            margin: 40px auto 0 auto;
-            background-color: #21262d;
-            color: var(--text-color);
-            border: 1px solid var(--border-color);
-            text-decoration: none;
-            padding: 10px 20px;
-            border-radius: 6px;
-            font-weight: bold;
-            transition: background-color 0.2s, color 0.2s;
-        }
-
-        .btn-back:hover {
-            background-color: var(--accent-color);
-            color: white;
-        }
-
-        footer {
-            background-color: var(--card-bg);
-            border-top: 1px solid var(--border-color);
-            text-align: center;
-            padding: 20px;
-            font-size: 0.9rem;
-            margin-top: 40px;
+        /* --- RESPONSIVE --- */
+        @media (max-width: 1200px) {
+            .carousel-wrapper {
+                max-width: 90%;
+            }
+            .prev-btn { left: -20px; }
+            .next-btn { right: -20px; }
         }
     </style>
 </head>
 <body>
 
-    <header>
-        <h1>Mon Espace Documentations & Projets</h1>
+    <nav class="navbar">
+        <div class="nav-container">
+            <a href="index.html" class="nav-logo">Miezan Christian</a>
+            <ul class="nav-menu">
+                <li><a href="index.html">Accueil</a></li>
+                <li><a href="documentation.html" class="active">Mes Documentations</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <header class="doc-header">
+        <h1>Mes Documentations Techniques</h1>
+        <p>Retrouvez ici mes productions, rapports de projets et veilles technologiques réalisés en cours de formation et en entreprise.</p>
     </header>
 
-    <main>
-        <h2>Mes Documentations & Certifications</h2>
-        <div class="carousel-container">
-            <button class="carousel-btn prev-btn" id="prevBtn">&#10094;</button>
-            <div class="carousel-track" id="carouselTrack">
-                
-                <div class="doc-card-carousel">
-                    <div class="doc-icon">📊</div>
-                    <h3>Tableau de Synthèse</h3>
-                    <p>Référentiel des compétences et activités réalisées au cours du BTS SIO SISR.</p>
-                    <a href="Tableau_de_synthese_%20Christian%20finale.pdf" class="btn-doc" target="_blank">Voir le document</a>
-                </div>
-
-                <div class="doc-card-carousel">
-                    <div class="doc-icon">📄</div>
-                    <h3>Mon Curriculum Vitae</h3>
-                    <p>Découvrez mon parcours professionnel, mes compétences techniques et mes formations.</p>
-                    <a href="CV_MIEZAN_Christian.pdf" class="btn-doc" target="_blank">Voir le document</a>
-                </div>
-
-                <div class="doc-card-carousel">
-                    <div class="doc-icon">🛠️</div>
-                    <h3>Documentation GLPI</h3>
-                    <p>Installation, configuration et gestion d'un serveur de gestion de parc informatique (GLPI).</p>
-                    <a href="Doc_GLPI.html" class="btn-doc" target="_blank">Voir la Doc</a>
-                </div>
-
-                <div class="doc-card-carousel">
-                    <div class="doc-icon">🛡️</div>
-                    <h3>Documentation Zabbix</h3>
-                    <p>Mise en place d'une solution de supervision réseau et système pour le suivi des infrastructures.</p>
-                    <a href="Doc_Zabbix.html" class="btn-doc" target="_blank">Voir la Doc</a>
-                </div>
-
-            </div>
-            <button class="carousel-btn next-btn" id="nextBtn">&#10095;</button>
-        </div>
-
-        <h2>Mes Projets Réalisés</h2>
-        <div class="projects-grid">
+    <main class="container">
+        <div class="carousel-wrapper">
+            <button class="carousel-btn prev-btn" onclick="scrollCarousel(-1)">&#10094;</button>
             
-            <div class="project-card">
-                <div>
-                    <h3>Mise en Situation Professionnelle - Cas Martin</h3>
-                    <p>Analyse, déploiement et sécurisation complète d'une infrastructure réseau et système fictive dans le cadre de mes examens.</p>
-                    <div class="project-tags">
-                        <span class="tag">Réseau</span>
-                        <span class="tag">Sécurité</span>
-                        <span class="tag">SISR</span>
+            <div class="carousel-container">
+                <div class="carousel-track" id="carouselTrack">
+
+                    <div class="doc-card-carousel">
+                        <div class="doc-icon">📊</div>
+                        <h3>Tableau de Synthèse</h3>
+                        <p>Le récapitulatif officiel de mes compétences et activités validées pour le BTS SIO SISR.</p>
+                        <a href="Tableau_de_synthese_%20Christian%20finale.pdf" class="btn-doc" target="_blank">Ouvrir le PDF</a>
                     </div>
+
+                    <div class="doc-card-carousel">
+                        <div class="doc-icon">📄</div>
+                        <h3>Mon Curriculum Vitae</h3>
+                        <p>Découvrez mon parcours professionnel, mes compétences techniques et mes formations.</p>
+                        <a href="CV_MIEZAN_Christian.pdf" class="btn-doc" target="_blank">Ouvrir le PDF</a>
+                    </div>
+
+                    <div class="doc-card-carousel">
+                        <div class="doc-icon">🛠️</div>
+                        <h3>Documentation GLPI</h3>
+                        <p>Installation, configuration et gestion d'un serveur de gestion de parc informatique (GLPI).</p>
+                        <a href="Doc_GLPI.html" class="btn-doc" target="_blank">Consulter</a>
+                    </div>
+
+                    <div class="doc-card-carousel">
+                        <div class="doc-icon">🛡️</div>
+                        <h3>Documentation Zabbix</h3>
+                        <p>Mise en place d'une solution de supervision réseau et système pour le suivi des infrastructures.</p>
+                        <a href="Doc_Zabbix.html" class="btn-doc" target="_blank">Consulter</a>
+                    </div>
+
                 </div>
-                <a href="Projet_Cas_Martin.html" class="btn-doc" target="_blank">Détails du Projet</a>
             </div>
 
-            <div class="project-card">
-                <div>
-                    <h3>Supervision Réseau d'Entreprise</h3>
-                    <p>Mise en place d'alertes automatiques et de tableaux de bord pour surveiller la disponibilité des serveurs critiques.</p>
-                    <div class="project-tags">
-                        <span class="tag">Zabbix</span>
-                        <span class="tag">Linux</span>
-                        <span class="tag">Metrologie</span>
-                    </div>
-                </div>
-                <a href="Projet_Supervision.html" class="btn-doc" target="_blank">Détails du Projet</a>
-            </div>
-
-            <div class="project-card">
-                <div>
-                    <h3>Gestion de Parc & Helpdesk</h3>
-                    <p>Déploiement de GLPI pour automatiser l'inventaire matériel et optimiser la résolution des incidents via un système de tickets.</p>
-                    <div class="project-tags">
-                        <span class="tag">GLPI</span>
-                        <span class="tag">ITIL</span>
-                        <span class="tag">Support</span>
-                    </div>
-                </div>
-                <a href="Projet_GLPI_Tickets.html" class="btn-doc" target="_blank">Détails du Projet</a>
-            </div>
-
+            <button class="carousel-btn next-btn" onclick="scrollCarousel(1)">&#10095;</button>
         </div>
-
-        <a href="index.html" class="btn-back">← Retour à l'Accueil</a>
     </main>
 
+    <section class="metro-section">
+        <h3>Mon Entreprise d'Accueil : METRO France</h3>
+        <div class="metro-container">
+            <div class="info-block">
+                <h4>Présentation Générale</h4>
+                <p>Le Groupe <span class="metro-style">METRO</span> est un groupe de distribution allemand...</p>
+                <p>L'activité principale de METRO est le commerce de gros (cash & carry), s'adressant exclusivement aux professionnels (restaurateurs, hôteliers et commerçants indépendants). L'entreprise se positionne comme un grossiste fournisseur pour les professionnels de l'alimentaire.</p>
+            </div>
+
+            <div class="info-block">
+                <h4>Chiffres Clés (Groupe et France)</h4>
+                <p>Au niveau mondial, le groupe METRO est présent dans 34 pays.</p>
+                <ul>
+                    <li>Le groupe <span class="metro-style">METRO</span> a enregistré un chiffre d’affaires annuel...</li>
+                    <li><span class="metro-style">METRO</span> France (la filiale où vous travaillez) a réalisé un chiffre d’affaires...</li>
+                    <li>L'entreprise compte environ 9 000 collaborateurs en France.</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
     <footer>
-        <p>&copy; 2026 - MIEZAN Christian | Portfolio BTS SIO SISR</p>
+        <p>© 2025 - Miezan Christian - Portfolio Technique</p>
     </footer>
 
     <script>
-        const track = document.getElementById('carouselTrack');
-        const nextBtn = document.getElementById('nextBtn');
-        const prevBtn = document.getElementById('prevBtn');
-
-        let index = 0;
-        const cardWidth = 280; // Largeur de la carte (260px) + gap (20px)
-        const maxIndex = track.children.length - 3; // Ajuste selon le nombre de cartes visibles (ici 3 visibles)
-
-        nextBtn.addEventListener('click', () => {
-            if (index < maxIndex) {
-                index++;
-                track.style.transform = `translateX(-${index * cardWidth}px)`;
-            } else {
-                index = 0; // Boucle retour au début
-                track.style.transform = `translateX(0px)`;
-            }
-        });
-
-        prevBtn.addEventListener('click', () => {
-            if (index > 0) {
-                index--;
-                track.style.transform = `translateX(-${index * cardWidth}px)`;
-            } else {
-                index = maxIndex; // Boucle vers la fin
-                track.style.transform = `translateX(-${index * cardWidth}px)`;
-            }
-        });
+        function scrollCarousel(direction) {
+            const track = document.getElementById('carouselTrack');
+            const scrollAmount = 315; // Largeur de la carte (290px) + le gap (25px)
+            track.scrollBy({
+                left: direction * scrollAmount,
+                behavior: 'smooth'
+            });
+        }
     </script>
 </body>
 </html>
