@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title> Documentations Techniques - Miezan Christian </title>
+    <link rel="stylesheet" href="Style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&display=swap" rel="stylesheet">
+    <style>
+        /* --- STYLES DU CARROUSEL ET CODE COULEUR --- */
+        .carousel-container {
+            position: relative;
+            max-width: 1000px;
+            margin: 40px auto;
+            overflow: hidden;
+        }
+
+        .carousel-track {
+            display: flex;
+            gap: 20px;
+            overflow-x: auto;
+            scroll-behavior: smooth;
+            padding: 20px 10px;
+            scrollbar-width: thin;
+        }
+
+        /* Personnalisation de la barre de défilement */
+        .carousel-track::-webkit-scrollbar {
+            height: 8px;
+        }
+        .carousel-track::-webkit-scrollbar-thumb {
+            background-color: #ccc;
+            border-radius: 4px;
+        }
+
+        /* Cartes du carrousel */
+        .doc-card-carousel {
+            flex: 0 0 300px; /* Largeur fixe pour chaque carte */
+            background: #fff;
+            border-radius: 8px;
+            padding: 20px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            border-top: 6px solid #ccc; /* Bordure par défaut */
+            transition: transform 0.3s ease;
+        }
+
+        .doc-card-carousel:hover {
+            transform: translateY(-5px);
+        }
+
+        /* Distinction de couleur : Rouge (Alternance - MOOP) */
+        .card-alternance {
+            border-top-color: #e63946; /* Rouge */
+        }
+        .card-alternance .badge {
+            background-color: #e63946;
+            color: white;
+            padding: 4px 8px;
+            border-radius: 4px;
+            font-size: 0.8rem;
+            font-weight: bold;
+            display: inline-block;
+            margin-bottom: 10px;
+        }
+
+        /* Distinction de couleur : Bleu (École - Mise en place) */
+        .card-ecole {
+            border-top-color: #457b9d; /* Bleu */
+        }
+        .card-ecole .badge {
+            background-color: #457b9d;
+            color: white;
+            padding: 4px 8px;
+            border-radius: 4px;
+            font-size: 0.8rem;
+            font-weight: bold;
+            display: inline-block;
+            margin-bottom: 10px;
+        }
+
+        .doc-card-carousel h4 {
+            margin: 10px 0;
+            font-size: 1.1rem;
+        }
+
+        .doc-card-carousel .tags {
+            font-size: 0.9rem;
+            margin: 15px 0;
+        }
+    </style>
+</head>
+<body>
+    <header class="main-header">
+        <nav>
+            <a href="index.html">Présentation / Parcours</a>
+            <a href="documentation.html" class="active-link">Documentations Techniques</a>
+            <a href="Veilles technologiques.html">Veilles Technologiques</a>
+        </nav>
+    </header>
+
+    <section id="docs" class="segment-section docs-grid-section">
+        <h2> 📁 Mon CV et mes Documentations</h2>
+        <p class="section-intro">Cette section présente mon CV ainsi que mes documentations classées par catégorie.</p>
+
+        <article class="doc-card">
+            <h4>Projet : Mon CV</h4>
+            <p class="description"> Mon CV développé avec IPSSI Paris </p>
+            <p class="tags"> **Compétences :** Virtualisation, Windows Server, Active Directory, IAM. </p>
+            <a href="MIEZAN-Christian-cv (6).pdf" target="_blank" class="cta-button secondary-cta">Consulte mon CV !</a>
+        </article>
+
+        ### Vos Documentations Techniques
+
+        <div class="carousel-container">
+            <div class="carousel-track">
+
+                <div class="doc-card-carousel card-alternance">
+                    <div>
+                        <span class="badge">Alternance</span>
+                        <h4>MOOP - Supervision Infrastructure</h4>
+                        <p class="description">Documentation sur la mise en place du projet de supervision en entreprise.</p>
+                        <p class="tags"><strong>Compétences :</strong> Monitoring, Réseau, Scripting.</p>
+                    </div>
+                    <a href="#" class="cta-button secondary-cta">Consulter</a>
+                </div>
+
+                <div class="doc-card-carousel card-ecole">
+                    <div>
+                        <span class="badge">École</span>
+                        <h4>Mise en place d'un serveur GLPI</h4>
+                        <p class="description">Gestion de parc et déploiement de tickets d'incident à l'IPSSI.</p>
+                        <p class="tags"><strong>Compétences :</strong> Gestion de Parc, Linux, ITIL.</p>
+                    </div>
+                    <a href="#" class="cta-button secondary-cta">Consulter</a>
+                </div>
+
+                <div class="doc-card-carousel card-alternance">
+                    <div>
+                        <span class="badge">Alternance</span>
+                        <h4>MOOP - Déploiement Intune</h4>
+                        <p class="description">Automatisation et gestion des endpoints de l'entreprise via Azure M365.</p>
+                        <p class="tags"><strong>Compétences :</strong> Intune, Cloud, Sécurité.</p>
+                    </div>
+                    <a href="#" class="cta-button secondary-cta">Consulter</a>
+                </div>
+
+                <div class="doc-card-carousel card-ecole">
+                    <div>
+                        <span class="badge">École</span>
+                        <h4>Mise en place d'un VPN PfSense</h4>
+                        <p class="description">Configuration d'un pare-feu et routage inter-VLAN dans l'environnement de TP.</p>
+                        <p class="tags"><strong>Compétences :</strong> PfSense, Sécurité, Routage.</p>
+                    </div>
+                    <a href="#" class="cta-button secondary-cta">Consulter</a>
+                </div>
+
+            </div>
+        </div>
+
+    </section> 
+
+    <section id="metro-group" class="segment-section alternate-bg">
+        <h2>Mon Entreprise : Le Groupe <span class="metro-style">METRO</span></h2>
+        <h3> Le Groupe METRO </h3>
+        
+        <div class="metro-info-container">
+            <div class="info-block">
+                <h4>Historique et Activité Principale</h4>
+                <p>Le groupe <span class="metro-style">METRO</span> est un groupe de distribution allemand...</p>
+                <p>L'activité principale de METRO est le commerce de gros (cash & carry), s'adressant exclusivement aux professionnels (restaurateurs, hôteliers et commerçants indépendants). L'entreprise se positionne comme un grossiste fournisseur pour les professionnels de l'alimentaire.</p>
+            </div>
+
+            <div class="info-block">
+                <h4>Chiffres Clés (Groupe et France)</h4>
+                <p>Au niveau mondial, le groupe METRO est présent dans 34 pays.</p>
+                <ul>
+                    <li>Le groupe <span class="metro-style">METRO</span> a enregistré un chiffre d’affaires annuel...</li>
+                    <li><span class="metro-style">METRO</span> France (la filiale où vous travaillez) a réalisé un chiffre d’affaires...</li>
+                    <li>L'entreprise compte environ 9 000 collaborateurs en France.</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <p>© 2025 - Miezan Christian - Portfolio Technique</p>
+    </footer>
+</body>
+</html>
