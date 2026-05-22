@@ -3,275 +3,239 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title> Documentations Techniques - Miezan Christian </title>
-    <link rel="stylesheet" href="Style.css">
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&display=swap" rel="stylesheet">
+    <title>Mes Documentations - Portfolio</title>
     <style>
-        /* --- STYLES DU CARROUSEL INTERACTIF ET CENTRÉ --- */
-        .carousel-wrapper {
-            position: relative;
-            max-width: 1050px;
-            margin: 40px auto;
-            display: flex;
-            align-items: center;
-            justify-content: center;
+        /* Variables de couleur */
+        :root {
+            --bg-color: #0d1117;
+            --card-bg: #161b22;
+            --text-color: #c9d1d9;
+            --text-main: #ffffff;
+            --accent-color: #58a6ff;
+            --accent-hover: #1f6feb;
+            --border-color: #30363d;
         }
 
-        .carousel-container {
+        /* Style Global */
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+        }
+
+        header {
+            background-color: var(--card-bg);
+            border-bottom: 1px solid var(--border-color);
+            padding: 20px;
+            text-align: center;
+        }
+
+        header h1 {
+            color: var(--text-main);
+            margin: 0;
+            font-size: 2rem;
+        }
+
+        main {
+            max-width: 1200px;
+            margin: 40px auto;
+            padding: 0 20px;
+            flex: 1;
             width: 100%;
+            box-sizing: border-box;
+        }
+
+        h2 {
+            color: var(--text-main);
+            border-bottom: 2px solid var(--accent-color);
+            padding-bottom: 10px;
+            margin-bottom: 30px;
+        }
+
+        /* --- CARROUSEL INTERACTIF --- */
+        .carousel-container {
+            position: relative;
+            max-width: 900px;
+            margin: 0 auto 60px auto;
             overflow: hidden;
-            padding: 20px 0;
+            padding: 10px 0;
         }
 
         .carousel-track {
             display: flex;
-            gap: 25px;
-            overflow-x: auto;
-            scroll-behavior: smooth;
-            padding: 10px;
-            scrollbar-width: none; /* Cache la barre de défilement sur Firefox */
-            justify-content: flex-start;
+            gap: 20px;
+            transition: transform 0.5s ease-in-out;
+            width: max-content;
         }
 
-        /* Cache la barre de défilement sur Chrome/Safari */
-        .carousel-track::-webkit-scrollbar {
-            display: none;
-        }
-
-        /* Cartes du carrousel */
         .doc-card-carousel {
-            flex: 0 0 290px; /* Largeur fixe pour chaque carte */
-            background: #fff;
-            border-radius: 12px;
-            padding: 24px;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.08);
+            background-color: var(--card-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            padding: 25px;
+            width: 260px; /* Taille fixe pour l'alignement */
+            flex-shrink: 0;
             display: flex;
             flex-direction: column;
             justify-content: space-between;
-            border-top: 6px solid #ccc;
-            transition: transform 0.3s cubic-bezier(0.25, 0.8, 0.25, 1), box-shadow 0.3s ease;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+            text-align: center;
+            transition: transform 0.3s, border-color 0.3s;
         }
 
-        /* Effet interactif au survol */
         .doc-card-carousel:hover {
-            transform: translateY(-8px) scale(1.02);
-            box-shadow: 0 12px 24px rgba(0,0,0,0.15);
+            transform: translateY(-5px);
+            border-color: var(--accent-color);
         }
 
-        /* Distinction de couleur : Rouge (Alternance - MOOP) */
-        .card-alternance {
-            border-top-color: #e63946;
-        }
-        .card-alternance .badge {
-            background-color: #e63946;
-            color: white;
-            padding: 5px 10px;
-            border-radius: 20px;
-            font-size: 0.75rem;
-            font-weight: 700;
-            text-transform: uppercase;
-            display: inline-block;
-            margin-bottom: 12px;
-            letter-spacing: 0.5px;
+        .doc-icon {
+            font-size: 3rem;
+            margin-bottom: 15px;
         }
 
-        /* Distinction de couleur : Bleu (École - Mise en place) */
-        .card-ecole {
-            border-top-color: #457b9d;
-        }
-        .card-ecole .badge {
-            background-color: #457b9d;
-            color: white;
-            padding: 5px 10px;
-            border-radius: 20px;
-            font-size: 0.75rem;
-            font-weight: 700;
-            text-transform: uppercase;
-            display: inline-block;
-            margin-bottom: 12px;
-            letter-spacing: 0.5px;
+        .doc-card-carousel h3 {
+            color: var(--text-main);
+            margin: 0 0 10px 0;
+            font-size: 1.3rem;
         }
 
-        .doc-card-carousel h4 {
-            margin: 10px 0;
-            font-size: 1.15rem;
-            color: #1d3557;
-            font-weight: 700;
-        }
-
-        .doc-card-carousel .description {
+        .doc-card-carousel p {
             font-size: 0.9rem;
-            color: #4a5568;
             line-height: 1.4;
-            margin-bottom: 10px;
+            margin-bottom: 20px;
+            flex-grow: 1;
         }
 
-        .doc-card-carousel .tags {
-            font-size: 0.85rem;
-            color: #718096;
-            margin: 10px 0 20px 0;
-        }
-
-        /* Boutons de navigation du carrousel */
-        .carousel-btn {
-            background: #fff;
-            border: 1px solid #e2e8f0;
-            color: #333;
-            font-size: 1.5rem;
+        .btn-doc {
+            display: inline-block;
+            background-color: var(--accent-color);
+            color: #ffffff;
+            text-decoration: none;
+            padding: 10px 15px;
+            border-radius: 6px;
             font-weight: bold;
-            width: 45px;
-            height: 45px;
-            border-radius: 50%;
-            cursor: pointer;
+            font-size: 0.9rem;
+            transition: background-color 0.2s;
+        }
+
+        .btn-doc:hover {
+            background-color: var(--accent-hover);
+        }
+
+        /* Boutons de Navigation du Carrousel */
+        .carousel-btn {
             position: absolute;
             top: 50%;
             transform: translateY(-50%);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
-            zIndex: 10;
-            transition: background 0.2s, color 0.2s;
+            background-color: rgba(22, 27, 34, 0.8);
+            border: 1px solid var(--border-color);
+            color: var(--text-main);
+            font-size: 1.5rem;
+            padding: 12px 16px;
+            cursor: pointer;
+            border-radius: 50%;
+            z-index: 10;
+            transition: background-color 0.2s, color 0.2s;
         }
 
         .carousel-btn:hover {
-            background: #1d3557;
-            color: #fff;
-            border-color: #1d3557;
+            background-color: var(--accent-color);
+            color: white;
         }
 
-        .carousel-btn.prev { left: -20px; }
-        .carousel-btn.next { right: -20px; }
+        .prev-btn { left: 10px; }
+        .next-btn { right: 10px; }
 
-        /* Responsiveness pour masquer les flèches sur petit écran si défilement tactile */
-        @media (max-width: 768px) {
-            .carousel-btn { display: none; }
-            .carousel-track { justify-content: flex-start; }
+        /* --- GRILLE DES PROJETS --- */
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+
+        .project-card {
+            background-color: var(--card-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            transition: transform 0.3s;
+        }
+
+        .project-card:hover {
+            transform: scale(1.02);
+        }
+
+        .project-card h3 {
+            color: var(--text-main);
+            margin-top: 0;
+        }
+
+        .project-tags {
+            margin: 15px 0;
+        }
+
+        .tag {
+            background-color: #21262d;
+            border: 1px solid var(--border-color);
+            color: var(--accent-color);
+            padding: 4px 8px;
+            border-radius: 4px;
+            font-size: 0.8rem;
+            margin-right: 5px;
+            display: inline-block;
+        }
+
+        .btn-back {
+            display: block;
+            width: max-content;
+            margin: 40px auto 0 auto;
+            background-color: #21262d;
+            color: var(--text-color);
+            border: 1px solid var(--border-color);
+            text-decoration: none;
+            padding: 10px 20px;
+            border-radius: 6px;
+            font-weight: bold;
+            transition: background-color 0.2s, color 0.2s;
+        }
+
+        .btn-back:hover {
+            background-color: var(--accent-color);
+            color: white;
+        }
+
+        footer {
+            background-color: var(--card-bg);
+            border-top: 1px solid var(--border-color);
+            text-align: center;
+            padding: 20px;
+            font-size: 0.9rem;
+            margin-top: 40px;
         }
     </style>
 </head>
 <body>
-    <header class="main-header">
-        <nav>
-            <a href="index.html">Présentation / Parcours</a>
-            <a href="documentation.html" class="active-link">Documentations Techniques</a>
-            <a href="Veilles technologiques.html">Veilles Technologiques</a>
-        </nav>
+
+    <header>
+        <h1>Mon Espace Documentations & Projets</h1>
     </header>
 
-    <section id="docs" class="segment-section docs-grid-section">
-        <h2> 📁 Mon CV et mes Documentations</h2>
-        <p class="section-intro">Cette section présente mon CV ainsi que mes documentations classées par catégorie.</p>
-
-        <article class="doc-card">
-            <h4>Projet : Mon CV</h4>
-            <p class="description"> Mon CV développé avec IPSSI Paris </p>
-            <p class="tags"> **Compétences :** Virtualisation, Windows Server, Active Directory, IAM. </p>
-            <a href="MIEZAN-Christian-cv (6).pdf" target="_blank" class="cta-button secondary-cta">Consulte mon CV !</a>
-        </article>
-
-        <h3 style="text-align: center; margin-top: 50px; font-family: 'Montserrat', sans-serif; color: #1d3557;">Mes Documentations Techniques</h3>
-
-        <div class="carousel-wrapper">
-            <button class="carousel-btn prev" onclick="scrollCarousel(-1)">&#10094;</button>
-            
-            <div class="carousel-container">
-                <div class="carousel-track" id="carouselTrack">
-
-                    <div class="doc-card-carousel card-ecole">
-                        <div>
-                            <span class="badge">École</span>
-                            <h4>Mise en place de GLPI</h4>
-                            <p class="description">Installation d'un serveur de gestion de parc informatique et gestion des tickets d'incident sur Debian.</p>
-                            <p class="tags"><strong>Compétences :</strong> GLPI, Debian, SSH, MariaDB.</p>
-                        </div>
-                        <a href="Mise en place de GLPI.pdf" target="_blank" class="cta-button secondary-cta">Consulter</a>
-                    </div>
-
-                    <div class="doc-card-carousel card-ecole">
-                        <div>
-                            <span class="badge">École</span>
-                            <h4>Mise en place Zabbix</h4>
-                            <p class="description">Supervision réseau et systèmes pour Windows et Linux. Déploiement des agents et analyse des pannes.</p>
-                            <p class="tags"><strong>Compétences :</strong> Zabbix, Supervision, Linux, Windows.</p>
-                        </div>
-                        <a href="Mise en place Zabbix.pdf" target="_blank" class="cta-button secondary-cta">Consulter</a>
-                    </div>
-
-                    <div class="doc-card-carousel card-alternance">
-                        <div>
-                            <span class="badge">Alternance</span>
-                            <h4>MOOP IPHONE</h4>
-                            <p class="description">Procédure complète d'installation et de déploiement des iPhones d'entreprise (Apple Business / Microsoft Intune).</p>
-                            <p class="tags"><strong>Compétences :</strong> MDM, Intune, Apple Business, Sécurité.</p>
-                        </div>
-                        <a href="MOOP IPHONE.pdf" target="_blank" class="cta-button secondary-cta">Consulter</a>
-                    </div>
-
-                    <div class="doc-card-carousel card-alternance">
-                        <div>
-                            <span class="badge">Alternance</span>
-                            <h4>MOOP Réinitialisation iPhone</h4>
-                            <p class="description">Guide de réinitialisation d'usine, gestion des sauvegardes iCloud et retrait sécurisé de la carte SIM.</p>
-                            <p class="tags"><strong>Compétences :</strong> Support Utilisateur, iOS, Sauvegarde.</p>
-                        </div>
-                        <a href="MOOP réinitialisation iphone.pdf" target="_blank" class="cta-button secondary-cta">Consulter</a>
-                    </div>
-
-                    <div class="doc-card-carousel card-alternance">
-                        <div>
-                            <span class="badge">Alternance</span>
-                            <h4>MOOP MASTER</h4>
-                            <p class="description">Procédure technique de remasterisation et réinstallation à distance des postes Windows 10 via boot réseau PXE.</p>
-                            <p class="tags"><strong>Compétences :</strong> PXE, Windows 10, SCCM, Déploiement.</p>
-                        </div>
-                        <a href="MOOP MASTER.pdf" target="_blank" class="cta-button secondary-cta">Consulter</a>
-                    </div>
-
-                </div>
-            </div>
-
-            <button class="carousel-btn next" onclick="scrollCarousel(1)">&#10095;</button>
-        </div>
-
-    </section> 
-
-    <section id="metro-group" class="segment-section alternate-bg">
-        <h2>Mon Entreprise : Le Groupe <span class="metro-style">METRO</span></h2>
-        <h3> Le Groupe METRO </h3>
-        
-        <div class="metro-info-container">
-            <div class="info-block">
-                <h4>Historique et Activité Principale</h4>
-                <p>Le groupe <span class="metro-style">METRO</span> est un groupe de distribution allemand...</p>
-                <p>L'activité principale de METRO est le commerce de gros (cash & carry), s'adressant exclusivement aux professionnels (restaurateurs, hôteliers et commerçants indépendants). L'entreprise se positionne comme un grossiste fournisseur pour les professionnels de l'alimentaire.</p>
-            </div>
-
-            <div class="info-block">
-                <h4>Chiffres Clés (Groupe et France)</h4>
-                <p>Au niveau mondial, le groupe METRO est présent dans 34 pays.</p>
-                <ul>
-                    <li>Le groupe <span class="metro-style">METRO</span> a enregistré un chiffre d’affaires annuel...</li>
-                    <li><span class="metro-style">METRO</span> France (la filiale où vous travaillez) a réalisé un chiffre d’affaires...</li>
-                    <li>L'entreprise compte environ 9 000 collaborateurs en France.</li>
-                </ul>
-            </div>
-        </div>
-    </section>
-
-    <footer>
-        <p>© 2025 - Miezan Christian - Portfolio Technique</p>
-    </footer>
-
-    <script>
-        function scrollCarousel(direction) {
-            const track = document.getElementById('carouselTrack');
-            const scrollAmount = 315; // Largeur de la carte (290px) + le gap (25px)
-            track.scrollBy({
-                left: direction * scrollAmount,
-                behavior: 'smooth'
-            });
-        }
-    </script>
-</body>
-</html>
+    <main>
+        <h2>Mes Documentations & Certifications</h2>
+        <div class="carousel-container">
+            <button class="carousel-btn prev-btn" id="prevBtn">&#10094;</button>
+            <div class="carousel-track" id="carouselTrack">
+                
+                <div class="doc-card-carousel">
+                    <div class="doc-icon">📊</div>
+                    <h3>Tableau de Synthèse</h3>
+                    <p>Référentiel des compétences et activités réalisées au cours du BTS SIO SISR.</p>
+                    <a href="Tableau_de_synthese_%20Christian%20finale.pdf" class="btn-doc" target="_blank
