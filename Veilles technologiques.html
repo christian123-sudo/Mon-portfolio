@@ -3,9 +3,98 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title> Veilles Technologiques - [Votre Nom] </title>
-    <link rel="stylesheet" href="Style.css"
+    <title> Veilles Technologiques - Christian </title>
+    <link rel="stylesheet" href="Style.css">
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&display=swap" rel="stylesheet">
+    <style>
+        /* ==========================================================================
+           STYLES POUR LA FENÊTRE MODALE (L'ARTICLE DE VEILLE)
+           ========================================================================== */
+        .modal {
+            display: none; /* Caché par défaut */
+            position: fixed;
+            z-index: 1000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            overflow: auto;
+            background-color: rgba(0, 0, 0, 0.6); /* Fond semi-transparent */
+            backdrop-filter: blur(5px); /* Effet flou en arrière-plan */
+        }
+
+        .modal-content {
+            background-color: #ffffff;
+            margin: 5% auto;
+            padding: 30px;
+            border-radius: 12px;
+            max-width: 900px;
+            width: 90%;
+            font-family: 'Montserrat', sans-serif;
+            color: #333;
+            box-shadow: 0 5px 25px rgba(0,0,0,0.3);
+            position: relative;
+            animation: fadeIn 0.3s ease-in-out;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(-20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .close-modal {
+            position: absolute;
+            top: 20px;
+            right: 25px;
+            color: #aaa;
+            font-size: 35px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: color 0.2s;
+        }
+
+        .close-modal:hover {
+            color: #000;
+        }
+
+        .article-image {
+            width: 100%;
+            height: auto;
+            border-radius: 8px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            margin: 20px 0 30px 0;
+        }
+
+        .back-link {
+            display: inline-block;
+            margin-bottom: 10px;
+            color: #007BFF;
+            text-decoration: none;
+            font-weight: 600;
+            cursor: pointer;
+        }
+
+        .back-link:hover {
+            text-decoration: underline;
+        }
+
+        .article-content h3 {
+            margin-top: 25px;
+            color: #111;
+            border-bottom: 2px solid #007BFF;
+            padding-bottom: 5px;
+        }
+
+        .article-content ul {
+            padding-left: 20px;
+            margin-bottom: 15px;
+        }
+
+        .article-content li {
+            margin-bottom: 8px;
+            list-style-type: disc;
+        }
+    </style>
 </head>
 <body>
     <header class="main-header">
@@ -17,28 +106,88 @@
     </header>
 
     <section id="veille" class="segment-section veille-grid-section">
-        <h2> 📰 Mes Veilles Technologiques </h2>
-        <p class="section-intro">La veille technologique est cruciale pour anticiper les évolutions et les menaces. Voici les thèmes que j'ai étudiés et documentés récemment.</p>
+        <h2> 📰 Ma Veille Technologique </h2>
+        <p class="section-intro">La veille technologique est cruciale pour anticiper les évolutions du secteur informatique et industriel. Voici le thème majeur que j'ai étudié et documenté récemment.</p>
 
         <article class="veille-card">
-            <h4>L'application progressive de l'AI Act européen et son impact direct sur les systèmes d'IA considérés comme "à haut risque" dans les véhicules.
-            </h4>
-            <p class="description"> Son application est progressive : les interdictions et le régime de sanctions sont déjà en place (début/août 2025), tandis que les obligations complètes pour les systèmes automobiles s'appliqueront en août 2026 et 2027.</p>
-            <p class="tags">  Cloud, IA, Sécurité, , Europe. </p>
-            <a href="#" class="cta-button secondary-cta disabled-cta">Article en cours</a>
-        </article>
-        
-        <article class="veille-card alternate-bg">
             <h4>Comment l'IA influence les constructeurs automobiles</h4>
-            <p class="description"> Étude des avantages de l'IA sur les constructeurs automobiles (chinoises)</p>
-            <p class="tags">  Automobile, Infrastructure, Coûts, voiture chinoise. </p>
-            <a href="#" class="cta-button secondary-cta disabled-cta">Article en cours</a>
+            <p class="description">Analyse de la révolution logicielle au cœur du véhicule : optimisation des coûts, modèles open source, souveraineté numérique et compétitivité mondiale avec un focus sur le marché chinois.</p>
+            <p class="tags"> Automobile, IA, Infrastructure, Coûts, Open Source. </p>
+            <button onclick="openArticle()" class="cta-button secondary-cta" style="cursor: pointer; border: none;">Consulter l'article</button>
         </article>
-
     </section>
+
+    <div id="articleModal" class="modal">
+        <div class="modal-content">
+            <span class="close-modal" onclick="closeArticle()">&times;</span>
+            
+            <span class="back-link" onclick="closeArticle()">← Retour aux veilles</span>
+            
+            <h1 style="margin-top: 10px;">L'IA et l'avenir de l'automobile : La révolution logicielle</h1>
+            
+            <img src="Mind map veilles techno.png" alt="Mind Map IA et Automobile" class="article-image">
+
+            <section class="article-content">
+                <p>Le secteur automobile traverse une transformation sans précédent où le logiciel devient le cœur de la valeur du véhicule. Cette veille technologique analyse comment l'intelligence artificielle redéfinit la conception, la conduite et la compétitivité mondiale des constructeurs.</p>
+
+                <h3>1. Une expérience de conduite révolutionnée</h3>
+                <p>L'intégration des technologies IA transforme radicalement l'habitacle et la relation homme-machine (HMI) :</p>
+                <ul>
+                    <li><strong>Assistants virtuels internes :</strong> Utilisation de modèles de raisonnement avancés et compréhension du langage naturel (ex: DeepSeek R1/R2).</li>
+                    <li><strong>Personnalisation accrue :</strong> Réponses adaptées aux habitudes du conducteur et configuration intuitive des paramètres du véhicule.</li>
+                    <li><strong>Interfaces intuitives :</strong> Amélioration de l'ergonomie cognitive pour réduire la charge mentale au volant.</li>
+                </ul>
+
+                <h3>2. Conduite autonome et sécurité</h3>
+                <p>L'IA de niveau 4 repousse les limites de la sécurité active :</p>
+                <ul>
+                    <li><strong>Systèmes ADAS avancés :</strong> Vision par ordinateur ultra-rapide et stationnement automatique amélioré.</li>
+                    <li><strong>Décision en temps réel :</strong> Analyse prédictive des risques grâce à des technologies de pointe comme l'IA "God's Eye" de BYD.</li>
+                    <li><strong>Navigation de précision :</strong> Cartographie et trajectoires optimisées instantanément.</li>
+                </ul>
+
+                <h3>3. Innovation et maîtrise des coûts</h3>
+                <p>L'impact de l'IA se situe également dans les infrastructures de développement :</p>
+                <ul>
+                    <li><strong>Développement accéléré :</strong> Raccourcissement des cycles de R&D grâce à des simulations massives par IA pour les phases de tests.</li>
+                    <li><strong>Modèles IA efficients :</strong> Choix d'algorithmes nécessitant moins de puces pour l'entraînement, offrant un code plus efficace et une empreinte énergétique réduite (ex: DeepSeek).</li>
+                    <li><strong>Démocratisation :</strong> Accessibilité accrue de l'IA embarquée pour l'utilisateur final.</li>
+                </ul>
+
+                <h3>4. Souveraineté, Open Source et géopolitique (Focus Chine)</h3>
+                <p>Le marché mondial se restructure sous l'impulsion des nouveaux standards technologiques :</p>
+                <ul>
+                    <li><strong>Modèles ouverts :</strong> Recours à l'Open Source pour contourner les restrictions technologiques et géopolitiques.</li>
+                    <li><strong>Edge AI (Indépendance du Cloud) :</strong> Traitement local des données directement dans le véhicule pour garantir la confidentialité et réduire la latence.</li>
+                    <li><strong>Compétitivité mondiale :</strong> Domination des leaders technologiques chinois (BYD, Geely, SAIC) qui imposent une vitesse d'innovation sans précédent et de nouvelles normes auto-pilotées, mettant une forte pression sur les acteurs traditionnels occidentaux.</li>
+                </ul>
+            </section>
+        </div>
+    </div>
 
     <footer>
         <p>© 2025 - Miezan Christian - Portfolio Technique</p>
     </footer>
+
+    <script>
+        var modal = document.getElementById("articleModal");
+
+        function openArticle() {
+            modal.style.display = "block";
+            document.body.style.overflow = "hidden"; /* Empêche le défilement de la page arrière */
+        }
+
+        function closeArticle() {
+            modal.style.display = "none";
+            document.body.style.overflow = "auto"; /* Réactive le défilement */
+        }
+
+        // Ferme aussi la modale si l'utilisateur clique en dehors de la boîte blanche
+        window.onclick = function(event) {
+            if (event.target == modal) {
+                closeArticle();
+            }
+        }
+    </script>
 </body>
 </html>
